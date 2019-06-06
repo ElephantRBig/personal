@@ -1,0 +1,43 @@
+Sub test()
+
+'---------------------------------------------------------------------
+'Declaring Variables
+'---------------------------------------------------------------------
+Dim b As Long ' Place holder value for ticker column 1
+'-----------------'
+'Header of columns'
+'-----------------'
+Cells(1, 9).Value = "Ticker"
+Cells(1, 10).Value = "Stock Volume"
+
+'---------------------------------------------------------------------
+' Columns 1-2 : Ticker & greatest total volume
+'---------------------------------------------------------------------
+
+'Column 1-2 START
+
+'----------------------------------------------------------------------
+' For loop to identify the unique values of the ticker column
+' looping through to collect the unique values and putting them
+' into another column
+'----------------------------------------------------------------------
+
+b = 2    ' placeholder variable
+Total = 0
+For i = 2 To Cells(Rows.Count, 1).End(xlUp).Row
+    If Cells(i, 1).Value <> Cells(i + 1, 1).Value Then
+        Cells(b, 9).Value = Cells(i, 1).Value
+        b = b + 1
+    Total = Total + Cells(i, 7)
+    Cells(b - 1, 10).Value = Total
+    Total = 0
+    
+    Else
+    Total = Total + Cells(i, 7)
+    
+    End If
+Next i
+
+
+'Column 1-2 Finished
+'---------------------------------------------------------------------
